@@ -1,4 +1,4 @@
-package com.dto;
+package com.tinyurl.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;

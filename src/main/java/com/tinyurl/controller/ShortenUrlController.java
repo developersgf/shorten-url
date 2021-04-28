@@ -1,8 +1,8 @@
-package com.controller;
+package com.tinyurl.controller;
 
-import com.dto.ShortenUrlDto;
-import com.exception.BadRequestException;
-import com.service.ShortUrlService;
+import com.tinyurl.dto.ShortenUrlDto;
+import com.tinyurl.exception.BadRequestException;
+import com.tinyurl.service.ShortUrlService;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

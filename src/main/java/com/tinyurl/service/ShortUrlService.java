@@ -1,9 +1,9 @@
-package com.service;
+package com.tinyurl.service;
 
-import com.dto.ShortenUrlDto;
-import com.exception.BadRequestException;
-import com.model.ShortenUrl;
-import com.repository.ShortenUrlRepository;
+import com.tinyurl.dto.ShortenUrlDto;
+import com.tinyurl.exception.BadRequestException;
+import com.tinyurl.model.ShortenUrl;
+import com.tinyurl.repository.ShortenUrlRepository;
 import com.google.common.hash.Hashing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

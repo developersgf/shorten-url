@@ -1,4 +1,4 @@
-package com.service;
+package com.tinyurl.service;
 
 
 import org.apache.commons.validator.routines.UrlValidator;

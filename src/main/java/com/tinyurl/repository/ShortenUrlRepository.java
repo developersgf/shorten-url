@@ -1,6 +1,6 @@
-package com.repository;
+package com.tinyurl.repository;
 
-import com.model.ShortenUrl;
+import com.tinyurl.model.ShortenUrl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

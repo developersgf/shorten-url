@@ -1,9 +1,9 @@
-package com.controller;
+package com.tinyurl.controller;
 
-import com.dto.ShortenUrlDto;
-import com.model.ShortenUrl;
-import com.repository.ShortenUrlRepository;
-import com.service.ShortUrlService;
+import com.tinyurl.dto.ShortenUrlDto;
+import com.tinyurl.model.ShortenUrl;
+import com.tinyurl.repository.ShortenUrlRepository;
+import com.tinyurl.service.ShortUrlService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

@@ -1,4 +1,4 @@
-package com.model;
+package com.tinyurl.model;
 
 import lombok.Getter;
 import lombok.Setter;
