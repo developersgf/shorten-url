@@ -1,0 +1,6 @@
+version: '2'
+services:
+  micro-service:
+    image: shorten-url:docker
+    ports:
+      - "8080:8080"
