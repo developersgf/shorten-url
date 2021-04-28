@@ -29,12 +29,13 @@
     1. http://localhost:8080/h2-console
 
 ## CI - Travis CI
-    Create account in `https://travis-ci.org` and grant Authority to Travis CI
+    Create account in `https://travis-ci.com` and grant Authority to Travis CI
     Sync account
     Trigger build
 
-- ![](./images/travis-ci-sync-account.png)
-- ![](./images/travis-ci-current-build.png)
-- ![](./images/travis-ci-build-history.png)
+  - ![](./images/travis-ci-sync-account.png)
+  - ![](./images/travis-ci-current-build.png)
+  - ![](./images/travis-ci-build-history.png)
+  - ![](./images/travis-ci-build-pull-request.png)
 
 Migrate docker or kubernetes application, AWS `EKS` `ECS` is a good approach.  
