@@ -12,7 +12,6 @@
 - `Hashing.murmur3_32()`: murmur Hash is one of the best hash algorithms which trade-off between hash performance and hash conflict rate 
 
 ### Local running
-1. prepare db file: `cd ~/ && touch short_url`
 1. `mvn clean install -DskipTests=true spring-boot:run`
 1. `mvn clean install -DskipTests=true`
 1. `mvn clean install`
