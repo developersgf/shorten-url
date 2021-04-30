@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Scope;
 @Getter
 public class ShortenUrlConfiguration {
 
-    @Value("${hash.expiry.day}")
+    @Value("${hash.expiry.day: 365}")
     private int day;
 
     @Bean
