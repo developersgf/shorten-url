@@ -3,7 +3,7 @@ package com.tinyurl.controller;
 import com.tinyurl.dto.ShortenUrlDto;
 import com.tinyurl.model.ShortenUrl;
 import com.tinyurl.repository.ShortenUrlRepository;
-import com.tinyurl.service.ShortUrlService;
+import com.tinyurl.service.ShortenUrlService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -36,7 +36,7 @@ public class ShortenUrlControllerTest {
     ObjectMapper om = new ObjectMapper();
 
     @Autowired
-    ShortUrlService shortUrlService;
+    ShortenUrlService shortenUrlService;
 
     @Autowired
     ShortenUrlRepository shortenUrlRepository;
