@@ -7,6 +7,7 @@ info:
 logging:
   level:
     com:
+      tinyurl:
         service: DEBUG
         controller: DEBUG
         repository: DEBUG
@@ -45,3 +46,7 @@ spring:
         hbm2ddl:
           auto: update
     show-sql: true
+
+hash:
+  expiry:
+    day: 60

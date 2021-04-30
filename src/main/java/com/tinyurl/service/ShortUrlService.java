@@ -1,5 +1,6 @@
 package com.tinyurl.service;
 
+import com.tinyurl.configuration.ShortenUrlConfiguration;
 import com.tinyurl.dto.ShortenUrlDto;
 import com.tinyurl.exception.BadRequestException;
 import com.tinyurl.model.ShortenUrl;
@@ -8,6 +9,7 @@ import com.google.common.hash.Hashing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -21,10 +23,13 @@ public class ShortUrlService {
     private static final Logger log = LoggerFactory.getLogger(ShortUrlService.class);
 
     private final ShortenUrlRepository shortenUrlRepository;
+    private final ShortenUrlConfiguration shortenUrlConfiguration;
 
     @Autowired
-    public ShortUrlService(ShortenUrlRepository shortenUrlRepository) {
+    public ShortUrlService(ShortenUrlRepository shortenUrlRepository,
+                           ShortenUrlConfiguration shortenUrlConfiguration) {
         this.shortenUrlRepository = shortenUrlRepository;
+        this.shortenUrlConfiguration = shortenUrlConfiguration;
     }
 
     public ShortenUrlDto create(ShortenUrlDto dto) {
@@ -44,11 +49,18 @@ public class ShortUrlService {
         shortenUrl.setId(tinyUrl);
         shortenUrl.setLongUrl(dto.getLongUrl());
         shortenUrl.setClient(dto.getClient());
-        shortenUrl.setCreated(LocalDateTime.now());
-        shortenUrl.setExpiry(LocalDateTime.now().plusDays(30));
-        shortenUrl = shortenUrlRepository.save(shortenUrl);
 
+        LocalDateTime now = LocalDateTime.now();
+        shortenUrl.setCreated(now);
+
+        LocalDateTime expiry = now.plusDays(shortenUrlConfiguration.getDay());
+        shortenUrl.setExpiry(expiry);
+
+        log.debug("LocalDateTime.now: " + now);
+        log.debug("shortenUrlConfiguration.day: " + shortenUrlConfiguration.getDay());
+        log.debug("LocalDateTime.expiry: " + expiry);
         log.debug(MessageFormat.format("create tiny url: {0}", shortenUrl.toString()));
+        shortenUrl = shortenUrlRepository.save(shortenUrl);
 
         dto.setTinyUrl(shortenUrl.getId());
         return dto;
