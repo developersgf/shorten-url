@@ -18,7 +18,7 @@ public class ShortenUrlConfiguration {
     @Bean
     // @Scope("singleton")
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public URLValidator getURLValidator(){
+    public URLValidator getURLValidator() {
         return new URLValidator();
     }
 
