@@ -1,11 +1,21 @@
 package com.tinyurl.bean;
 
+import com.tinyurl.configuration.ShortenUrlConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(loader= AnnotationConfigContextLoader.class,
+        classes= ShortenUrlConfiguration.class)
 public class URLValidatorTest {
 
-    private URLValidator urlValidator = new URLValidator();
+    @Autowired
+    private URLValidator urlValidator;
 
     @Test
     public void testSuccess() {
