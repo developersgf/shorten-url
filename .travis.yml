@@ -1,6 +1,8 @@
 language: java
+
 jdk:
   - openjdk11
+
 os:
   - linux
 
@@ -16,9 +18,8 @@ cache:
 script:
   - echo "========================== Script Start =========================="
   - java -version
-  - mvn clean install
   - mvn test
-  - echo 'HOME folder: '${HOME}
+  - mvn clean install -DskipTests=true
   - echo "========================== Script End =========================="
 
 notifications:
