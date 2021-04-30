@@ -10,6 +10,7 @@ public class URLValidatorTest {
         Assert.assertTrue(URLValidator.INSTANCE.validateURL("http://127.0.0.1:8080"));
         Assert.assertTrue(URLValidator.INSTANCE.validateURL("https://travis-ci.com"));
 
+        Assert.assertTrue(URLValidator.INSTANCE.validateURL("https://mail.google.com"));
         Assert.assertTrue(URLValidator.INSTANCE.validateURL("https://calendar.google.com/calendar/u/0/r?tab=rc"));
         Assert.assertTrue(URLValidator.INSTANCE.validateURL("https://www.youtube.com/c/%E6%AF%8F%E6%97%A5%E4%B8%80%E4%B9%A6/videos"));
     }
