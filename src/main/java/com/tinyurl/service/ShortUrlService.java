@@ -1,5 +1,6 @@
 package com.tinyurl.service;
 
+import com.tinyurl.bean.URLValidator;
 import com.tinyurl.configuration.ShortenUrlConfiguration;
 import com.tinyurl.dto.ShortenUrlDto;
 import com.tinyurl.exception.BadRequestException;
@@ -9,7 +10,6 @@ import com.google.common.hash.Hashing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -22,19 +22,22 @@ public class ShortUrlService {
 
     private static final Logger log = LoggerFactory.getLogger(ShortUrlService.class);
 
+    private final URLValidator urlValidator;
     private final ShortenUrlRepository shortenUrlRepository;
     private final ShortenUrlConfiguration shortenUrlConfiguration;
 
     @Autowired
     public ShortUrlService(ShortenUrlRepository shortenUrlRepository,
-                           ShortenUrlConfiguration shortenUrlConfiguration) {
+                           ShortenUrlConfiguration shortenUrlConfiguration,
+                           URLValidator urlValidator) {
         this.shortenUrlRepository = shortenUrlRepository;
         this.shortenUrlConfiguration = shortenUrlConfiguration;
+        this.urlValidator = urlValidator;
     }
 
     public ShortenUrlDto create(ShortenUrlDto dto) {
 
-        if (!URLValidator.INSTANCE.validateURL(dto.getLongUrl())) {
+        if (!urlValidator.validateURL(dto.getLongUrl())) {
             dto.setMessage("long url is not a URL");
             throw new BadRequestException("long url is not a URL");
         }
