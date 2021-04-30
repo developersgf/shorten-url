@@ -1,19 +1,19 @@
 package com.tinyurl.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tinyurl.dto.ShortenUrlDto;
 import com.tinyurl.model.ShortenUrl;
 import com.tinyurl.repository.ShortenUrlRepository;
-import com.tinyurl.service.ShortenUrlService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.HashMap;
@@ -22,21 +22,17 @@ import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.hamcrest.core.IsEqual;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureMockMvc
 public class ShortenUrlControllerTest {
 
     ObjectMapper om = new ObjectMapper();
-
-    @Autowired
-    ShortenUrlService shortenUrlService;
 
     @Autowired
     ShortenUrlRepository shortenUrlRepository;
@@ -79,7 +75,7 @@ public class ShortenUrlControllerTest {
 
         List<ShortenUrl> list = shortenUrlRepository.findAll();
         String tiny = list.get(0).getId();
-        mockMvc.perform(get("/shortenurl/"+tiny)
+        mockMvc.perform(get("/shortenurl/" + tiny)
                 .contentType("application/json")
                 .content(om.writeValueAsString(toCreate)))
                 .andDo(print())
@@ -99,7 +95,7 @@ public class ShortenUrlControllerTest {
 
         List<ShortenUrl> list = shortenUrlRepository.findAll();
         String tiny = list.get(0).getId();
-        mockMvc.perform(delete("/shortenurl/"+tiny)
+        mockMvc.perform(delete("/shortenurl/" + tiny)
                 .contentType("application/json")
                 .content(om.writeValueAsString(toCreate)))
                 .andDo(print())
