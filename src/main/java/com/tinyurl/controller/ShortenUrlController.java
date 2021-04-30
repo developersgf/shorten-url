@@ -2,7 +2,7 @@ package com.tinyurl.controller;
 
 import com.tinyurl.dto.ShortenUrlDto;
 import com.tinyurl.exception.BadRequestException;
-import com.tinyurl.service.ShortUrlService;
+import com.tinyurl.service.ShortenUrlService;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,11 +20,11 @@ public class ShortenUrlController {
 
     private static final Logger log = LoggerFactory.getLogger(ShortenUrlController.class);
 
-    private final ShortUrlService shortUrlService;
+    private final ShortenUrlService shortenUrlService;
 
     @Autowired
-    public ShortenUrlController(ShortUrlService shortUrlService) {
-        this.shortUrlService = shortUrlService;
+    public ShortenUrlController(ShortenUrlService shortenUrlService) {
+        this.shortenUrlService = shortenUrlService;
     }
 
     @RequestMapping(value = "/shortenurl",
@@ -52,7 +52,7 @@ public class ShortenUrlController {
     public ResponseEntity<ShortenUrlDto> createShortenUrl(@RequestBody ShortenUrlDto shortenUrlDto) {
         log.debug(MessageFormat.format("Get shortUrlDto in controller: {0}", shortenUrlDto.toString()));
         try {
-            shortUrlService.create(shortenUrlDto);
+            shortenUrlService.create(shortenUrlDto);
             return new ResponseEntity<>(shortenUrlDto, HttpStatus.CREATED);
         } catch (BadRequestException e) {
             shortenUrlDto.setMessage(e.getMessage());
@@ -84,7 +84,7 @@ public class ShortenUrlController {
     public ResponseEntity<ShortenUrlDto> getLongUrl(@PathVariable("tiny") String tiny) {
         log.debug(MessageFormat.format("Get tiny url in controller: {0}", tiny));
         try {
-            return new ResponseEntity<>(shortUrlService.redirect(tiny), HttpStatus.OK);
+            return new ResponseEntity<>(shortenUrlService.redirect(tiny), HttpStatus.OK);
         } catch (BadRequestException e) {
             return new ResponseEntity<>(new ShortenUrlDto(e.getMessage()), HttpStatus.NOT_FOUND);
         }
@@ -114,7 +114,7 @@ public class ShortenUrlController {
     public ResponseEntity<ShortenUrlDto> deleteLongUrl(@PathVariable("tiny") String tiny) {
         log.debug(MessageFormat.format("Get tiny url in controller: {0}", tiny));
         try {
-            return new ResponseEntity<>(shortUrlService.delete(tiny), HttpStatus.OK);
+            return new ResponseEntity<>(shortenUrlService.delete(tiny), HttpStatus.OK);
         } catch (BadRequestException e) {
             return new ResponseEntity<>(new ShortenUrlDto(e.getMessage()), HttpStatus.NOT_FOUND);
         }

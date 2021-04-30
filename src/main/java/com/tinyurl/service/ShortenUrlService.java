@@ -18,18 +18,18 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
-public class ShortUrlService {
+public class ShortenUrlService {
 
-    private static final Logger log = LoggerFactory.getLogger(ShortUrlService.class);
+    private static final Logger log = LoggerFactory.getLogger(ShortenUrlService.class);
 
     private final URLValidator urlValidator;
     private final ShortenUrlRepository shortenUrlRepository;
     private final ShortenUrlConfiguration shortenUrlConfiguration;
 
     @Autowired
-    public ShortUrlService(ShortenUrlRepository shortenUrlRepository,
-                           ShortenUrlConfiguration shortenUrlConfiguration,
-                           URLValidator urlValidator) {
+    public ShortenUrlService(ShortenUrlRepository shortenUrlRepository,
+                             ShortenUrlConfiguration shortenUrlConfiguration,
+                             URLValidator urlValidator) {
         this.shortenUrlRepository = shortenUrlRepository;
         this.shortenUrlConfiguration = shortenUrlConfiguration;
         this.urlValidator = urlValidator;
