@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Setter
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(description = "Request object for POST method")
-public class ShortenUrlDto {
+public class ShortenUrlDto implements Serializable {
     public ShortenUrlDto() {
     }
 

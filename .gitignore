@@ -28,6 +28,9 @@ dist/
 
 .elasticbeanstalk
 
+# ehcache
+spring-boot-ehcache/cache
+
 # Unit test reports
 TEST*.xml
 
